@@ -1,0 +1,16 @@
+// raz-plus resource examples
+https://cf.content.raz-plus.com/raz_book_image/2879/projectable/large/1/book/page-0.jpg
+
+https://cf.content.raz-plus.com/animation/2879/audio/4.mp3
+
+// ffmpeg resource
+http://trac.ffmpeg.org/wiki/Slideshow
+https://www.jianshu.com/p/998d59afee5f
+
+
+// commands to use
+ffmpeg -loop 1 -i page-3.jpg -i raz_afterschool_lb65_p3_text.mp3 -vf "pad=ceil(iw/2)*2:ceil(ih/2)*2" -c:v libx264 -x264-params keyint=1:scenecut=0 -c:a copy -shortest out3.mp4
+
+ffmpeg -ss 00:00:00 -t 00:00:20.096 -accurate_seek -i pre.mp4 -acodec aac -vcodec libx264 -x264-params keyint=1:scenecut=0 -strict -2 final.mp4
+
+ffmpeg -f concat -i mylist.txt -c copy output
