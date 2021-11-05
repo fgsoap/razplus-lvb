@@ -1,7 +1,7 @@
 // raz-plus resource examples
-https://cf.content.raz-plus.com/raz_book_image/2879/projectable/large/1/book/page-0.jpg
-
-https://cf.content.raz-plus.com/animation/2879/audio/4.mp3
+https://cf.content.raz-plus.com/raz_book_image/2879/projectable/large/1/book/page-3.jpg
+https://cf.content.raz-plus.com/audio/2879/raz_afterschool_lb65_p3_text.mp3
+https://cf.content.raz-plus.com/animation/2879/audio/3.mp3
 
 // ffmpeg resource
 http://trac.ffmpeg.org/wiki/Slideshow
