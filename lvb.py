@@ -32,16 +32,18 @@ class LVB(object):
         rs = self.session.get(
             'https://www.raz-plus.com/projectable/book.php?id=2879&lang=1&type=book'
         )
-        page_number = re.findall(
+        page_number_list = re.findall(
             r"var displayPages = \[.*\]",
             rs.text)[0].split('= ')[-1].strip('[').strip(']').split(',')[3:-1]
-        # r = self.session.get(
-        #     'https://cf.content.raz-plus.com/raz_book_image/2879/projectable/large/1/book/page-3.jpg',
-        #     stream=True)
-        # if r.status_code == 200:
-        #     with open('2879.jpg', 'wb') as f:
-        #         r.raw.decode_content = True
-        #         shutil.copyfileobj(r.raw, f)
+        for i in page_number_list:
+            r = self.session.get(
+                'https://cf.content.raz-plus.com/raz_book_image/2879/projectable/large/1/book/page-{}.jpg'
+                .format(i),
+                stream=True)
+            if r.status_code == 200:
+                with open('{}.jpg'.format(i), 'wb') as f:
+                    r.raw.decode_content = True
+                    shutil.copyfileobj(r.raw, f)
 
     def concat_audios_and_images(self):
         pass
