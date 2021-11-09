@@ -1,5 +1,5 @@
 // raz-plus resource examples
-https://www.raz-plus.com/projectable/book.php?id=174&lang=1&type=book
+https://www.raz-plus.com/projectable/book.php?id=2879&lang=1&type=book
 https://cf.content.raz-plus.com/raz_book_image/2879/projectable/large/1/book/page-3.jpg
 https://cf.content.raz-plus.com/audio/2879/raz_afterschool_lb65_p3_text.mp3
 https://cf.content.raz-plus.com/animation/2879/audio/3.mp3
@@ -15,3 +15,7 @@ ffmpeg -loop 1 -i page-3.jpg -i raz_afterschool_lb65_p3_text.mp3 -vf "pad=ceil(i
 ffmpeg -ss 00:00:00 -t 00:00:20.096 -accurate_seek -i pre.mp4 -acodec aac -vcodec libx264 -x264-params keyint=1:scenecut=0 -strict -2 final.mp4
 
 ffmpeg -f concat -i mylist.txt -c copy output
+
+// remove text
+https://towardsdatascience.com/remove-text-from-images-using-cv2-and-keras-ocr-24e7612ae4f4
+https://newbedev.com/remove-background-text-and-noise-from-an-image-using-image-processing-with-opencv
