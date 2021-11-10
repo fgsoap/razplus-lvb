@@ -16,7 +16,6 @@ jobs:
         # errors especially on GitHub-hosted macos machines.
         token: ${{ secrets.GITHUB_TOKEN }}
       id: setup-ffmpeg
-    - run: ffmpeg -i input.avi output.mkv
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:
@@ -28,3 +27,4 @@ jobs:
     - name: Analysing the code with pylint
       run: |
         pylint `ls -R|grep .py$|xargs`
+    # - run: ffmpeg -i input.avi output.mkv
