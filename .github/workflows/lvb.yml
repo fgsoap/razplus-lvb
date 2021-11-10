@@ -23,4 +23,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
+      - name: play LVB
+        run: |
+          python lvb.py
     # - run: ffmpeg -i input.avi output.mkv
