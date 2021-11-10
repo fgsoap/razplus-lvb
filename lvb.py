@@ -66,4 +66,4 @@ if __name__ == '__main__':
     s = razplus.login()
 
     lvb = LVB(s, 2879)
-    lvb.get_image()
+    lvb.get_images_and_audios()
