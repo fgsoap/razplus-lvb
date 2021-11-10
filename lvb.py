@@ -1,4 +1,7 @@
-import requests, re, shutil
+import re
+import shutil
+
+import requests
 
 
 class RazPlus(object):
@@ -29,16 +32,15 @@ class LVB(object):
         pass
 
     def get_image(self):
-        rs = self.session.get(
-            'https://www.raz-plus.com/projectable/book.php?id=2879&lang=1&type=book'
-        )
+        rs = self.session.get('https://www.raz-plus.com/projectable/' +
+                              'book.php?id=2879&lang=1&type=book')
         page_number_list = re.findall(
             r"var displayPages = \[.*\]",
             rs.text)[0].split('= ')[-1].strip('[').strip(']').split(',')[3:-1]
         for i in page_number_list:
             r = self.session.get(
-                'https://cf.content.raz-plus.com/raz_book_image/2879/projectable/large/1/book/page-{}.jpg'
-                .format(i),
+                'https://cf.content.raz-plus.com/raz_book_image/' +
+                '2879/projectable/large/1/book/page-{}.jpg'.format(i),
                 stream=True)
             if r.status_code == 200:
                 with open('{}.jpg'.format(i), 'wb') as f:
