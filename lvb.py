@@ -35,30 +35,27 @@ class LVB(object):
         page_number_list = re.findall(
             r"var displayPages = \[.*\]",
             rs.text)[0].split('= ')[-1].strip('[').strip(']').split(',')[3:-1]
-        for i in page_number_list:
-            r = self.session.get(
-                'https://cf.content.raz-plus.com/raz_book_image/{}/projectable/large/1/book/page-{}.jpg'
-                .format(self.id, i),
-                stream=True)
-            if r.status_code == 200:
-                with open('{}.jpg'.format(i), 'wb') as f:
-                    r.raw.decode_content = True
-                    shutil.copyfileobj(r.raw, f)
-        for i in page_number_list:
-            r = self.session.get(
-                'https://cf.content.raz-plus.com/audio/{}/raz_afterschool_lb65_p{}_text.mp3'
-                .format(self.id, i),
-                stream=True)
-            if r.status_code == 200:
-                with open('{}.mp3'.format(i), 'wb') as f:
-                    r.raw.decode_content = True
-                    shutil.copyfileobj(r.raw, f)
+        download(
+            'https://cf.content.raz-plus.com/raz_book_image/{}/projectable/large/1/book/page-{}.jpg',
+            page_number_list, self.session, self.id, 'jpg')
+        download(
+            'https://cf.content.raz-plus.com/audio/{}/raz_afterschool_lb65_p{}_text.mp3',
+            page_number_list, self.session, self.id, 'mp3')
 
     def concat_audios_and_images(self):
         pass
 
     def concat_videos(self):
         pass
+
+
+def download(url, list, session, id, type):
+    for i in list:
+        r = session.get(url.format(id, i), stream=True)
+        if r.status_code == 200:
+            with open('{}.{}'.format(i, type), 'wb') as f:
+                r.raw.decode_content = True
+                shutil.copyfileobj(r.raw, f)
 
 
 if __name__ == '__main__':
