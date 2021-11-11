@@ -36,6 +36,8 @@ class LVB(object):
         page_number_list = re.findall(
             r"var displayPages = \[.*\]",
             rs.text)[0].split('= ')[-1].strip('[').strip(']').split(',')[3:-1]
+        print(re.findall(r"var displayPages = \[.*\]", rs.text))
+        print(page_number_list)
         mp3_title = re.findall(
             r"raz_.*_title_text.mp3",
             rs.text)[0].split('raz_')[-1].split('_title_text.mp3')[0]
