@@ -56,11 +56,14 @@ class LVB(object):
 
 def download(url, list, session, id, type):
     for i in list:
-        r = session.get(url.format(id, i), stream=True)
-        if r.status_code == 200:
-            with open('{}.{}'.format(i, type), 'wb') as f:
-                r.raw.decode_content = True
-                shutil.copyfileobj(r.raw, f)
+        try:
+            r = session.get(url.format(id, i), stream=True)
+            if r.status_code == 200:
+                with open('{}.{}'.format(i, type), 'wb') as f:
+                    r.raw.decode_content = True
+                    shutil.copyfileobj(r.raw, f)
+        except Exception as e:
+            print(e)
 
 
 if __name__ == '__main__':
