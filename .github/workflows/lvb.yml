@@ -29,19 +29,16 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-      - name: play LVB
+      - name: Play LVB
         run: |
           python lvb.py "${{ github.event.inputs.name }}"
-      - name: combine resources
+      - name: Play ffmpeg
         run: |
           sh ffmpeg.sh
-      - name: concat all mp4
-        run: |
           ffmpeg -f concat -i mylist.txt -c copy output.mp4
-          ls -alh output.mp4
-      - name: "Upload Artifact"
+      - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: LVB
+          name: "${{ github.event.inputs.name }}"
           path: output.mp4
           retention-days: 5
