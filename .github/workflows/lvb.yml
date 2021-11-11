@@ -32,10 +32,10 @@ jobs:
       - name: Play LVB
         run: |
           python lvb.py "${{ github.event.inputs.name }}"
+          ls -alh
       - name: Play ffmpeg
         run: |
           sh ffmpeg.sh
-          ffmpeg -f concat -i mylist.txt -c copy output.mp4
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
