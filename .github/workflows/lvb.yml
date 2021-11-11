@@ -27,7 +27,10 @@ jobs:
       - name: play LVB
         run: |
           python lvb.py
-      - name: test ffmpeg
+      - name: combine resources
         run: |
-          # ffmpeg -loop 1 -i 3.jpg -i 3.mp3 -vf "pad=ceil(iw/2)*2:ceil(ih/2)*2" -c:v libx264 -x264-params keyint=1:scenecut=0 -c:a copy -shortest 3.mp4
           sh ffmpeg.sh
+      - name: concat all mp4
+        run: |
+          ffmpeg -f concat -i mylist.txt -c copy output.mp4
+          ls -alh output.mp4
