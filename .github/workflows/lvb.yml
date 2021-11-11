@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.8", "3.9", "3.10"]
+        python-version: ["3.10"]
     steps:
       - uses: actions/checkout@v2
       - uses: FedericoCarboni/setup-ffmpeg@v1
@@ -34,3 +34,9 @@ jobs:
         run: |
           ffmpeg -f concat -i mylist.txt -c copy output.mp4
           ls -alh output.mp4
+      - name: "Upload Artifact"
+        uses: actions/upload-artifact@v2
+        with:
+          name: LVB
+          path: output.mp4
+          retention-days: 5
