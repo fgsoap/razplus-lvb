@@ -35,12 +35,16 @@ class LVB(object):
         page_number_list = re.findall(
             r"var displayPages = \[.*\]",
             rs.text)[0].split('= ')[-1].strip('[').strip(']').split(',')[3:-1]
+        mp3_title = re.findall(
+            r"raz_.*_title_text.mp3",
+            rs.text)[0].split('raz_')[-1].split('_title_text.mp3')[0]
         download(
             'https://cf.content.raz-plus.com/raz_book_image/{}/projectable/large/1/book/page-{}.jpg',
             page_number_list, self.session, self.id, 'jpg')
         download(
-            'https://cf.content.raz-plus.com/audio/{}/raz_afterschool_lb65_p{}_text.mp3',
-            page_number_list, self.session, self.id, 'mp3')
+            'https://cf.content.raz-plus.com/audio/{}/raz_{}_p{}_text.mp3'.
+            format("{}", mp3_title,
+                   "{}"), page_number_list, self.session, self.id, 'mp3')
 
     def concat_audios_and_images(self):
         pass
