@@ -1,5 +1,6 @@
 import re
 import shutil
+import sys
 
 import requests
 
@@ -63,8 +64,9 @@ def download(url, list, session, id, type):
 
 
 if __name__ == '__main__':
+    lvb_id = sys.argv[1]
     razplus = RazPlus('lirdorogni', 'OMBlvqdI')
     s = razplus.login()
 
-    lvb = LVB(s, 2879)
+    lvb = LVB(s, lvb_id)
     lvb.get_images_and_audios()

@@ -1,6 +1,11 @@
-name: LVB
-
-on: [push]
+name: Manually Trigger LVB
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: "Target to greet"
+        required: false
+        default: "2021"
 
 jobs:
   build:
@@ -26,7 +31,7 @@ jobs:
           pip install -r requirements.txt
       - name: play LVB
         run: |
-          python lvb.py
+          python lvb.py "${{ github.event.inputs.name }}"
       - name: combine resources
         run: |
           sh ffmpeg.sh
