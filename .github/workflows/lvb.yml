@@ -27,4 +27,6 @@ jobs:
       - name: play LVB
         run: |
           python lvb.py
-    # - run: ffmpeg -i input.avi output.mkv
+      - name: test ffmpeg
+        run: |
+          ffmpeg -loop 1 -i 3.jpg -i 3.mp3 -vf "pad=ceil(iw/2)*2:ceil(ih/2)*2" -c:v libx264 -x264-params keyint=1:scenecut=0 -c:a copy -shortest 3.mp4
