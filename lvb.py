@@ -60,10 +60,6 @@ class LVB(object):
 
     def concat_videos(self):
         subprocess.run(
-            '''ls *.mp4 | sort -n | awk '{printf "file \"%s\"\n", $1}' > mylist.txt''',
-            shell=True,
-            check=True)
-        subprocess.run(
             "ffmpeg -safe 0 -f concat -i 'mylist.txt' -c copy output.mp4",
             shell=True,
             check=True)
@@ -93,4 +89,4 @@ if __name__ == '__main__':
     lvb = LVB(s, lvb_id)
     lvb.get_images_and_audios()
     lvb.concat_audios_and_images()
-    lvb.concat_videos()
+    # lvb.concat_videos()
