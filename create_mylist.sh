@@ -1,0 +1,1 @@
+find . -type f -name '*.mp4' -printf "file '$PWD/%p'\n" | sort > 'mylist.txt'
