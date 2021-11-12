@@ -59,7 +59,7 @@ def download(url, list, session, id, type):
         try:
             r = session.get(url.format(id, i), stream=True)
             if r.status_code == 200:
-                with open('{}.{}'.format(i, type), 'wb') as f:
+                with open('{}.{}'.format(str(i), type), 'wb') as f:
                     r.raw.decode_content = True
                     shutil.copyfileobj(r.raw, f)
             else:
