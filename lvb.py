@@ -1,7 +1,8 @@
 import re
 import shutil
-import sys
 import subprocess
+import sys
+from pathlib import Path
 
 import requests
 
@@ -59,10 +60,25 @@ class LVB(object):
                 check=True)
 
     def concat_videos(self):
+        mp4_list = []
+        basepath = Path('.')
+        files_in_basepath = (entry for entry in basepath.iterdir()
+                             if entry.is_file())
+        for item in files_in_basepath:
+            if '.mp4' in item.name:
+                mp4_list.append(item.name)
+        mp4_list.sort(key=fn)
+        with open('mylist.txt', 'w') as writer:
+            for i in mp4_list:
+                writer.write("file '{}'\n".format(i))
         subprocess.run(
             "ffmpeg -safe 0 -f concat -i 'mylist.txt' -c copy output.mp4",
             shell=True,
             check=True)
+
+
+def fn(e):
+    return int(e.split('.')[0])
 
 
 def download(url, list, session, id, type):
@@ -89,4 +105,4 @@ if __name__ == '__main__':
     lvb = LVB(s, lvb_id)
     lvb.get_images_and_audios()
     lvb.concat_audios_and_images()
-    # lvb.concat_videos()
+    lvb.concat_videos()

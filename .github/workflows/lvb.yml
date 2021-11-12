@@ -32,10 +32,6 @@ jobs:
       - name: Play LVB
         run: |
           python lvb.py "${{ github.event.inputs.name }}"
-          ls -alh
-      - name: Concat videos
-        run: |
-          sh mylist.sh
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
