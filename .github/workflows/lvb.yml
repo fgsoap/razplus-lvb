@@ -4,7 +4,7 @@ on:
     inputs:
       name:
         description: "Target to greet"
-        required: false
+        required: true
         default: "2021"
 
 jobs:
