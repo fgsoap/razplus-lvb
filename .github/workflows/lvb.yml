@@ -33,15 +33,6 @@ jobs:
         run: |
           python lvb.py "${{ github.event.inputs.name }}"
           ls -alh
-      - name: Merge videos and audios
-        run: |
-          sh ffmpeg_merge.sh
-      - name: Create List
-        run: |
-          sh create_mylist.sh
-      - name: Concat mp4
-        run: |
-          sh ffmpeg_concat.sh
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:

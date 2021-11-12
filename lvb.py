@@ -1,6 +1,7 @@
 import re
 import shutil
 import sys
+import subprocess
 
 import requests
 
@@ -25,6 +26,8 @@ class RazPlus(object):
 
 
 class LVB(object):
+    real_mp3_list = []
+
     def __init__(self, session, id):
         self.session = session
         self.id = id
@@ -48,10 +51,22 @@ class LVB(object):
                    "{}"), page_number_list, self.session, self.id, 'mp3')
 
     def concat_audios_and_images(self):
-        pass
+        for i in LVB.real_mp3_list:
+            subprocess.run(
+                'ffmpeg -loop 1 -i {}.jpg -i {}.mp3 -vf "pad=ceil(iw/2)*2:ceil(ih/2)*2" -c:v libx264 -x264-params keyint=1:scenecut=0 -c:a copy -shortest {}.mp4'
+                .format(i),
+                shell=True,
+                check=True)
 
     def concat_videos(self):
-        pass
+        subprocess.run(
+            '''ls *.mp4 | sort -n | awk '{printf "file \"%s\"\n", $1}' > mylist.txt''',
+            shell=True,
+            check=True)
+        subprocess.run(
+            "ffmpeg -safe 0 -f concat -i 'mylist.txt' -c copy output.mp4",
+            shell=True,
+            check=True)
 
 
 def download(url, list, session, id, type):
@@ -62,6 +77,8 @@ def download(url, list, session, id, type):
                 with open('{}.{}'.format(i, type), 'wb') as f:
                     r.raw.decode_content = True
                     shutil.copyfileobj(r.raw, f)
+                    if type == 'mp3':
+                        LVB.real_mp3_list.append(i)
             else:
                 print(url.format(id, i) + ": " + str(r.status_code))
         except Exception as e:
@@ -75,3 +92,5 @@ if __name__ == '__main__':
 
     lvb = LVB(s, lvb_id)
     lvb.get_images_and_audios()
+    lvb.concat_audios_and_images()
+    lvb.concat_videos()
