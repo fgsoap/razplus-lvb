@@ -5,4 +5,4 @@ do
 ffmpeg -loop 1 -i $i.jpg -i $i.mp3 -vf "pad=ceil(iw/2)*2:ceil(ih/2)*2" -c:v libx264 -x264-params keyint=1:scenecut=0 -c:a copy -shortest $i.mp4
 done
 
-ffmpeg -f concat -i mylist.txt -c copy output.mp4
+ffmpeg -f concat -safe 0 -i mylist.txt -c copy output.mp4

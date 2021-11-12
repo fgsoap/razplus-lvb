@@ -34,8 +34,8 @@ class LVB(object):
             'https://www.raz-plus.com/projectable/book.php?id={}&lang=1&type=book'
             .format(self.id))
         page_number_list = re.findall(
-            r"var displayPages = \[.*\]",
-            rs.text)[0].split('= ')[-1].strip('[').strip(']').split(',')[2:-1]
+            r"var displayPages = \[.*\]", rs.text)[0].split('= ')[-1].strip(
+                '[').strip(']').strip('0,').split(',')[2:]
         mp3_title = re.findall(
             r"raz_.*_title_text.mp3",
             rs.text)[0].split('raz_')[-1].split('_title_text.mp3')[0]
