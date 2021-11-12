@@ -62,6 +62,8 @@ def download(url, list, session, id, type):
                 with open('{}.{}'.format(i, type), 'wb') as f:
                     r.raw.decode_content = True
                     shutil.copyfileobj(r.raw, f)
+            else:
+                print(url.format(id, i) + ": " + r.status_code)
         except Exception as e:
             print(e)
 
