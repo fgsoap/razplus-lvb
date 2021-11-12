@@ -54,7 +54,7 @@ class LVB(object):
         for i in LVB.real_mp3_list:
             subprocess.run(
                 'ffmpeg -loop 1 -i {}.jpg -i {}.mp3 -vf "pad=ceil(iw/2)*2:ceil(ih/2)*2" -c:v libx264 -x264-params keyint=1:scenecut=0 -c:a copy -shortest {}.mp4'
-                .format(i),
+                .format(i, i, i),
                 shell=True,
                 check=True)
 
