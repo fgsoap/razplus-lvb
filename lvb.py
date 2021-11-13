@@ -21,6 +21,8 @@ class RazPlus(object):
                            'password': self.passowrd
                        },
                        allow_redirects=True)
+            if 'error' in r.url:
+                raise Exception('Login failed!')
             if r.status_code == 200:
                 return s
             else:
