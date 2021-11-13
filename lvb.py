@@ -14,16 +14,20 @@ class RazPlus(object):
 
     def login(self):
         s = requests.Session()
-        r = s.post('https://www.raz-plus.com/auth/login.php',
-                   data={
-                       'username': self.username,
-                       'password': self.passowrd
-                   },
-                   allow_redirects=True)
-        if r.status_code == 200:
-            return s
-        else:
-            raise Exception('Bad Response!')
+        try:
+            r = s.post('https://www.raz-plus.com/auth/login.php',
+                       data={
+                           'username': self.username,
+                           'password': self.passowrd
+                       },
+                       allow_redirects=True)
+            if r.status_code == 200:
+                return s
+            else:
+                raise Exception('Bad Response!')
+        except Exception as e:
+            print(e)
+            exit(1)
 
 
 class LVB(object):
