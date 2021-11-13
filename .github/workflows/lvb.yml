@@ -2,10 +2,18 @@ name: Manually Trigger LVB
 on:
   workflow_dispatch:
     inputs:
-      name:
-        description: "Target to greet"
+      bookId:
+        description: "BookId"
         required: true
         default: "2021"
+      username:
+        description: "Username"
+        required: true
+        default: "lirdorogni"
+      password:
+        description: "Password"
+        required: true
+        default: "OMBlvqdI"
 
 jobs:
   build:
@@ -31,10 +39,10 @@ jobs:
           pip install -r requirements.txt
       - name: Play LVB
         run: |
-          python lvb.py "${{ github.event.inputs.name }}"
+          python lvb.py "${{ github.event.inputs.bookId }}" "${{ github.event.inputs.username }}" "${{ github.event.inputs.password }}"
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: "${{ github.event.inputs.name }}"
+          name: "${{ github.event.inputs.bookId }}"
           path: output.mp4
           retention-days: 5

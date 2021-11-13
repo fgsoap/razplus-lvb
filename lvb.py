@@ -99,6 +99,8 @@ def download(url, list, session, id, type):
 
 if __name__ == '__main__':
     lvb_id = sys.argv[1]
+    lvb_username = sys.argv[2]
+    lvb_password = sys.argv[3]
     razplus = RazPlus('lirdorogni', 'OMBlvqdI')
     s = razplus.login()
 
