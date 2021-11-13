@@ -37,6 +37,7 @@ class LVB(object):
         rs = self.session.get(
             'https://www.raz-plus.com/projectable/book.php?id={}&lang=1&type=book'
             .format(self.id))
+        print(rs.text)
         if "Invalid Request" in rs.text:
             raise Exception("Invalid Request")
             exit(1)
