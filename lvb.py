@@ -38,6 +38,7 @@ class LVB(object):
             'https://www.raz-plus.com/projectable/book.php?id={}&lang=1&type=book'
             .format(self.id))
         match_displayPages = re.findall(r"var displayPages = \[.*\]", rs.text)
+        print(match_displayPages)
         if not match_displayPages:
             raise Exception("Invalid Request")
             exit(1)
