@@ -101,7 +101,7 @@ if __name__ == '__main__':
     lvb_id = sys.argv[1]
     lvb_username = sys.argv[2]
     lvb_password = sys.argv[3]
-    razplus = RazPlus('lirdorogni', 'OMBlvqdI')
+    razplus = RazPlus(lvb_username, lvb_password)
     s = razplus.login()
 
     lvb = LVB(s, lvb_id)
