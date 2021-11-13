@@ -37,13 +37,12 @@ class LVB(object):
         rs = self.session.get(
             'https://www.raz-plus.com/projectable/book.php?id={}&lang=1&type=book'
             .format(self.id))
-        print(rs.text)
-        if "Invalid Request" in rs.text:
+        match_displayPages = re.findall(r"var displayPages = \[.*\]", rs.text)
+        if not match_displayPages:
             raise Exception("Invalid Request")
             exit(1)
-        page_number_list = re.findall(
-            r"var displayPages = \[.*\]", rs.text)[0].split('= ')[-1].strip(
-                '[').strip(']').strip('0,').split(',')[2:]
+        page_number_list = match_displayPages[0].split('= ')[-1].strip(
+            '[').strip(']').strip('0,').split(',')[2:]
         mp3_title = re.findall(
             r"raz_.*_title_text.mp3",
             rs.text)[0].split('raz_')[-1].split('_title_text.mp3')[0]
