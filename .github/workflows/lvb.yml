@@ -1,4 +1,4 @@
-name: Manually Trigger LVB
+name: LVB
 on:
   workflow_dispatch:
     inputs:
