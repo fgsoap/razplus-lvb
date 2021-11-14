@@ -79,14 +79,14 @@ class LVB(object):
                 mp4_list.append(item.name)
         for i in mp4_list:
             subprocess.run(
-                'ffmpeg -y -i {} -filter_complex "[0:a]apad=pad_dur=2[a]" -map 0:v -map "[a]" -c:v copy {}'
+                'ffmpeg -y -i {} -filter_complex "[0:a]apad=pad_dur=2[a]" -map 0:v -map "[a]" -c:v copy _{}'
                 .format(i, i),
                 shell=True,
                 check=True)
         mp4_list.sort(key=fn)
         with open('mylist.txt', 'w') as writer:
             for i in mp4_list:
-                writer.write("file '{}'\n".format(i))
+                writer.write("file '_{}'\n".format(i))
         subprocess.run(
             "ffmpeg -safe 0 -f concat -i 'mylist.txt' -c copy output.mp4",
             shell=True,
