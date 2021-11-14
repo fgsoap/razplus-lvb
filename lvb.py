@@ -64,8 +64,13 @@ class LVB(object):
     def concat_audios_and_images(self):
         for i in LVB.real_mp3_list:
             subprocess.run(
-                'ffmpeg -f lavfi -t 2 -i anullsrc -loop 1 -i {}.jpg -i {}.mp3 -vf "pad=ceil(iw/2)*2:ceil(ih/2)*2" -c:v libx264 -x264-params keyint=1:scenecut=0 -c:a copy -shortest {}.mp4'
+                'ffmpeg -loop 1 -i {}.jpg -i {}.mp3 -vf "pad=ceil(iw/2)*2:ceil(ih/2)*2" -c:v libx264 -x264-params keyint=1:scenecut=0 -c:a copy -shortest {}.mp4'
                 .format(i, i, i),
+                shell=True,
+                check=True)
+            subprocess.run(
+                'ffmpeg -i {}.mp4 -filter_complex "[0:a]apad=pad_dur=2[a]" -map 0:v -map "[a]" -c:v copy {}.mp4'
+                .format(i, i),
                 shell=True,
                 check=True)
 
