@@ -7,6 +7,7 @@ https://cf.content.raz-plus.com/animation/2879/audio/3.mp3
 // ffmpeg resource
 http://trac.ffmpeg.org/wiki/Slideshow
 https://www.jianshu.com/p/998d59afee5f
+https://stackoverflow.com/questions/60133816/how-to-append-2-seconds-of-silence-to-an-existing-movie-mp4-with-ffmpeg
 
 
 // commands to use
