@@ -69,7 +69,7 @@ class LVB(object):
                 shell=True,
                 check=True)
             subprocess.run(
-                'ffmpeg -i {}.mp4 -filter_complex "[0:a]apad=pad_dur=2[a]" -map 0:v -map "[a]" -c:v copy {}.mp4'
+                'ffmpeg -y -i {}.mp4 -filter_complex "[0:a]apad=pad_dur=2[a]" -map 0:v -map "[a]" -c:v copy {}.mp4'
                 .format(i, i),
                 shell=True,
                 check=True)
