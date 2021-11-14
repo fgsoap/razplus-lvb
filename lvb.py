@@ -68,11 +68,6 @@ class LVB(object):
                 .format(i, i, i),
                 shell=True,
                 check=True)
-            subprocess.run(
-                'ffmpeg -y -i {}.mp4 -filter_complex "[0:a]apad=pad_dur=2[a]" -map 0:v -map "[a]" -c:v copy {}.mp4'
-                .format(i, i),
-                shell=True,
-                check=True)
 
     def concat_videos(self):
         mp4_list = []
@@ -82,6 +77,12 @@ class LVB(object):
         for item in files_in_basepath:
             if '.mp4' in item.name:
                 mp4_list.append(item.name)
+        for i in mp4_list:
+            subprocess.run(
+                'ffmpeg -y -i {} -filter_complex "[0:a]apad=pad_dur=2[a]" -map 0:v -map "[a]" -c:v copy {}'
+                .format(i, i),
+                shell=True,
+                check=True)
         mp4_list.sort(key=fn)
         with open('mylist.txt', 'w') as writer:
             for i in mp4_list:
