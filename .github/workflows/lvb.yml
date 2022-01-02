@@ -9,11 +9,11 @@ on:
       username:
         description: "Username"
         required: true
-        default: "gufyenespi"
+        default: "vaknirurtu"
       password:
         description: "Password"
         required: true
-        default: "bplMjWSz"
+        default: "bWYHaSgZ"
 
 jobs:
   build:
