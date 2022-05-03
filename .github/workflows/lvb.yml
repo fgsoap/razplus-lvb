@@ -9,11 +9,11 @@ on:
       username:
         description: "Username"
         required: true
-        default: "cokkicirki"
+        default: "joltitipsi"
       password:
         description: "Password"
         required: true
-        default: "FTtNisMe"
+        default: "joltitipsi"
 
 jobs:
   build:
