@@ -57,7 +57,7 @@ class LVB(object):
             'https://cf.content.raz-plus.com/raz_book_image/{}/projectable/large/1/book/page-{}.jpg',
             page_number_list, self.session, self.id, 'jpg')
         download(
-            'https://cf.content.raz-plus.com/audio/{}/raz_{}_p{}_text.mp3'.
+            'https://cf.content.raz-plus.com/audio/{}/{}_p{}_text.mp3'.
             format("{}", mp3_title,
                    "{}"), page_number_list, self.session, self.id, 'mp3')
 
