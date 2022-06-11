@@ -58,7 +58,7 @@ class LVB(object):
             page_number_list, self.session, self.id, 'jpg')
         download(
             'https://cf.content.raz-plus.com/audio/{}/raz_{}_p{}_text.mp3'.
-            format("{}", mp3_title,
+            format("{}", mp3_title.lower(),
                    "{}"), page_number_list, self.session, self.id, 'mp3')
 
     def concat_audios_and_images(self):
