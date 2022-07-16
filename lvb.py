@@ -51,8 +51,7 @@ class LVB(object):
         page_number_list = match_displayPages[0].split('= ')[-1].strip(
             '[').strip(']').strip('0,').split(',')[2:]
         mp3_title = re.findall(
-            #r"raz_.*_title_text.mp3",
-            r".*.mp3",
+            r".*_title_text.mp3",
             rs.text)[0].split('raz_')[-1].split('_title_text.mp3')[0]
         download(
             'https://cf.content.raz-plus.com/raz_book_image/{}/projectable/large/1/book/page-{}.jpg',
