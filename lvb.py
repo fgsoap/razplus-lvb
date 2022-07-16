@@ -48,9 +48,7 @@ class LVB(object):
                       rs.text):
             raise Exception("Invalid Book")
             exit(1)
-        print(re.findall(
-            r"*.mp3",
-            rs.text))
+        print(rs.text)
         page_number_list = match_displayPages[0].split('= ')[-1].strip(
             '[').strip(']').strip('0,').split(',')[2:]
         mp3_title = re.findall(
