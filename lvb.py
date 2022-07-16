@@ -48,6 +48,8 @@ class LVB(object):
                       rs.text):
             raise Exception("Invalid Book")
             exit(1)
+        print(match_displayPages[0].split('= ')[-1].strip(
+            '[').strip(']').strip('0,').split(','))
         page_number_list = match_displayPages[0].split('= ')[-1].strip(
             '[').strip(']').strip('0,').split(',')[2:]
         mp3_title = re.findall(
