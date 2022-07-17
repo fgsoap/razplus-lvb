@@ -50,7 +50,7 @@ class LVB(object):
             exit(1)
         page_number_list = match_displayPages[0].split('= ')[-1].strip(
             '[').strip(']').strip('0,').split(',')[2:]
-        mp3_title = re.findall(r"audio\\/{}\\/.*_title_text.mp3".format(self.id), s)[0].split('audio\\/{}\\/'.format(self.id))[-1].split('_title_text.mp3')[0]
+        mp3_title = re.findall(r"audio\\/{}\\/.*_title_text.mp3".format(self.id), rs.text)[0].split('audio\\/{}\\/'.format(self.id))[-1].split('_title_text.mp3')[0]
         #re.findall(
         #   r"raz_.*_title_text.mp3",
         #   rs.text)[0].split('raz_')[-1].split('_title_text.mp3')[0]
